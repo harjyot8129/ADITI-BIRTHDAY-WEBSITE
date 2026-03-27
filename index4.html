@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday Aditi 💗</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Georgia', serif;
+  background: linear-gradient(to bottom, #ffe6f0, #fff0f7);
+  color: #5a2a4f;
+  line-height: 1.8;
+  overflow-x: hidden;
+}
+
+/* 🔐 Lock Screen */
+#lockScreen {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(to bottom, #ffe6f0, #fff0f7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.lock-box {
+  background: rgba(255, 240, 247, 0.95);
+  padding: 30px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(90,42,79,0.15);
+  max-width: 320px;
+  width: 90%;
+  position: relative;
+  z-index: 10;
+}
+
+.lock-box h2 { color: #d65ca0; }
+
+.lock-box input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #e0b7d9;
+  margin-top: 15px;
+  font-size: 1rem;
+  outline: none;
+}
+
+.lock-box button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background: #d65ca0;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.lock-box button:hover { transform: scale(1.05); }
+
+/* 🌸 Cherry Blossom Canvas */
+#blossomCanvas, #surpriseBlossomCanvas {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* 🎉 Birthday Animation */
+#birthdayAnim {
+  position: fixed;
+  inset: 0;
+  background: rgba(255,224,240,0.95);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 9998;
+}
+
+#birthdayAnim h1 {
+  color: #d65ca0;
+  font-size: 2.3rem;
+  margin-bottom: 20px;
+  animation: glow 2s infinite alternate;
+  text-align: center;
+  padding: 0 20px;
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 5px #ff9fd1; }
+  to { text-shadow: 0 0 20px #ff66aa; }
+}
+
+/* 🎈 Balloons */
+.balloon {
+  position: absolute;
+  bottom: -100px;
+  font-size: 2rem;
+  animation: floatUp 6s linear forwards;
+}
+
+@keyframes floatUp {
+  to {
+    transform: translateY(-120vh);
+    opacity: 0;
+  }
+}
+
+/* Corner photos */
+.corner {
+  position: fixed;
+  width: 180px;
+  height: 180px;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.3;
+  z-index: 1;
+  border-radius: 20px;
+}
+
+.top-left { top: 15px; left: 15px; background-image: url('corner1.jpg.png'); }
+.top-right { top: 15px; right: 15px; background-image: url('corner2.jpg.png'); }
+.bottom-left { bottom: 15px; left: 15px; background-image: url('corner3.jpg.png'); }
+.bottom-right { bottom: 15px; right: 15px; background-image: url('corner4.jpg.png'); }
+
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 40px 20px;
+  position: relative;
+  z-index: 2;
+  display: none;
+  animation: fadeInText 1s ease forwards;
+}
+
+.container h1 {
+  text-align: center;
+  color: #d65ca0;
+}
+
+/* Gallery */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin: 30px 0;
+}
+
+.gallery img {
+  width: 100%;
+  height: 260px;
+  object-fit: contain;
+  border-radius: 18px;
+  box-shadow: 0 8px 20px rgba(90,42,79,0.18);
+  background: #fff;
+}
+
+.gallery video {
+  width: 100%;
+  height: auto;
+  max-height: 260px;
+  object-fit: contain;
+  border-radius: 18px;
+  box-shadow: 0 8px 20px rgba(90,42,79,0.18);
+  background: black;
+}
+
+/* Message */
+.message {
+  background: rgba(255,240,247,0.92);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(90,42,79,0.1);
+}
+
+/* 🎁 Surprise Button */
+.surprise-section {
+  text-align: center;
+  margin: 50px 0;
+}
+
+.surprise-btn {
+  background: linear-gradient(135deg, #ff7eb3, #ff4d88);
+  color: white;
+  border: none;
+  padding: 15px 34px;
+  font-size: 1.1rem;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(255,77,136,0.45);
+  transition: transform 0.2s;
+}
+
+.surprise-btn:hover { transform: scale(1.05); }
+
+/* 🎬 Overlay */
+.video-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 9999;
+}
+
+.video-overlay video {
+  width: 90%;
+  max-width: 700px;
+  border-radius: 20px;
+  box-shadow: 0 25px 60px rgba(0,0,0,0.6);
+  background: black;
+}
+
+/* ✕ Close Button */
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  font-size: 2.2rem;
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 50;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+  transition: transform 0.2s;
+}
+
+.close-btn:hover { transform: scale(1.2); }
+
+/* 💗 Final Text */
+.final-text {
+  margin-top: 35px;
+  font-size: 2rem;
+  color: #ff7eb3;
+  text-align: center;
+  display: none;
+}
+
+.final-text.show {
+  display: block;
+  animation: fadeInText 2s ease forwards;
+}
+
+@keyframes fadeInText {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.signature {
+  margin-top: 30px;
+  text-align: right;
+  font-style: italic;
+  color: #d65ca0;
+}
+
+footer {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 0.9rem;
+  color: #a65788;
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🌸 Cherry Blossom Canvas (Lock Screen) -->
+<canvas id="blossomCanvas"></canvas>
+ 
+<!-- 🔐 Lock -->
+<div id="lockScreen">
+  <div class="lock-box">
+    <h2>💗 Private 💗</h2>
+    <input type="password" id="passwordInput" placeholder="Password" onkeydown="if(event.key==='Enter')unlock()">
+    <button onclick="unlock()">Enter</button>
+  </div>
+</div>
+
+<!-- 🎉 Birthday -->
+<div id="birthdayAnim">
+  <h1>Happy 19th Birthday Aditi 🎉💗</h1>
+</div>
+
+<!-- Corners -->
+<div class="corner top-left"></div>
+<div class="corner top-right"></div>
+<div class="corner bottom-left"></div>
+<div class="corner bottom-right"></div>
+
+<div class="container" id="mainContent">
+
+  <h1>Happy Birthday Aditi 💗🐢</h1>
+
+  <div class="gallery">
+    <img src="m1.jpeg">
+    <img src="m2.jpeg">
+    <img src="m3.jpeg">
+    <img src="m4.jpeg">
+    <img src="m5.jpeg">
+    <video src="video1.mp4" controls></video>
+    <video src="video2.mp4" controls></video>
+    <video src="video3.mp4" controls></video>
+    <img src="m6.jpeg">
+    <img src="m7.jpeg">
+    <img src="m8.jpeg">
+    <img src="m9.jpeg">
+  </div>
+
+  <div class="message">
+    <p>Happy birthday Aditi 💗🐢.
+I just want you to know how much you truly mean to me and how deeply you've become a part of my life. Somewhere along the way without forcing anything you became my comfort my safe place and my favorite person♥️. You matter to me more than anyone . When I think about us and look back at these moments we've shared. I see the way you held my hand across the table like nothing else mattered in that moment. I see us standing together, smiling naturally, just being ourselves. Those moments mean everything to me because they show how easy and real it feels with you.
+I see the way you stood beside me so naturally. And then there's that moment where you kissed my cheeks. That picture means a lot to me because it shows how much loved I feel with you, how your presence alone brings comfort without saying a word😭💗.
+I know how much you love and respect your family and how deeply you care about them. Even with everything you deal with you still choose to be here with me. That means more to me than you'll ever fully realize💗.
+Every time I look at you i feel how beautiful you are. It’s not just your face it’s your eyes, the way you smile makes me blush hard.To me you’re the kind of beauty I feel lucky to call mine.
+You've brought a kind of peace into my life that I didn't even realize I was missing. With you, I don't have to pretend or explain myself too much you understand me in a way that feels meant to be. You make my hard days lighter just by being there and my good days even better just by sharing them with me. Sometimes it's the smallest things that stay with me the most your smile, the way you look at me, the comfort of sitting together quietly.
+. You make me feel valued, cared for and understood and that means more to me than you probably realize.I still remember everything about us. when u first time said i like u, ham dono ab sath h. 
+Last year i wasn't with you on your birthday, but this year i am with you and it makes me value u even more. No matter how many times we argue, at end of the day i will always choose you.Even if go out or talk to other people u will always be the one i come back to. 
+I know ki mai apse kabhi kabhi rudely baat karta hu ya zaida hi over gussa karta hu but aditi i love u and mujhe nhi lagta ki mai apke baad kisi aur se itna close kabhi ho bhi paunga issliye ab dekho apko mere sath hi rhena parega chahe mai kitna bhi bura hu but i promise  mai apko kisi aur se bhi zaida pyaar karunga aur karta hi hu .Aur dekho yr meri bday date 23 h apki 29 and months mai bhi 6 ka gap h yeh dekho show karta h ki hame 2 yah 5 ke jagah 6 owltorto karne chaiye. Aap sahi bolti ho ki dhundhne pe bhi apke jaisi nhi milegi koi , kyuki jitna aap pyaar karti ho aur feel karvati ho koi aur kabhi karva hi nhi sakta aur abhi toh sirf 2 saal se jante h aage jaakar aur kitna zaida karogi issliye ab apke paas bhi option nhi aap sirf meri ho aur rahogi..love u cutu
+I still remember first time we held hands and when u scribled on my shirt when u drew that joker and heart it felt so special and that shirt for me it feels like having a piece of u with me. Then meeting u again after a whole year on my birthday made me so happy it's something i truly desired and wished for. For me my every prayers starts with you, u are the only person i wish to be with me in every aspects of my life .
+ They say it's beautiful when the one you prayed for becomes the one you pray with. I truly wish that one day we grow into that kind of love. I feel lucky to have u in my life.
+I just want you to know how loved you are not just today but every day. You are important to me and I'm grateful to have u. for you. Happy Birthday Aditi 💗💋.  You make my life happier, and more meaningful just by being in it.
+ Aditi suno na i love u . ❤️</p>
+  </div>
+
+  <div class="surprise-section">
+    <button class="surprise-btn" onclick="showSurprise()">💝 A Little Surprise</button>
+  </div>
+
+  <div class="video-overlay" id="videoOverlay">
+    <canvas id="surpriseBlossomCanvas"></canvas>
+    <button class="close-btn" onclick="closeSurprise()">✕</button>
+    <video id="surpriseVideo" src="surprise.mp4"></video>
+    <div class="final-text" id="finalText">
+      I Love You Aditi 💗<br>Happy Birthday 🎂
+    </div>
+  </div>
+
+  <div class="signature">— Yours, Harjyot 💗</div>
+  <footer>My Love Aditi 💗🌙</footer>
+
+</div>
+
+<script>
+  
+// ============ 🌸 CHERRY BLOSSOM ENGINE ============
+class CherryBlossomEngine {
+  constructor(canvasId) {
+    this.canvas = document.getElementById(canvasId);
+    this.ctx = this.canvas.getContext('2d');
+    this.petals = [];
+    this.running = false;
+    this.resize();
+    window.addEventListener('resize', () => this.resize());
+  }
+
+  resize() {
+    this.canvas.width = window.innerWidth;
+    this.canvas.height = window.innerHeight;
+  }
+
+  createPetal() {
+    return {
+      x: Math.random() * this.canvas.width,
+      y: -20,
+      size: 12 + Math.random() * 14,
+      speedY: 1 + Math.random() * 2,
+      speedX: Math.sin(Math.random() * Math.PI * 2) * 1.5,
+      rotation: Math.random() * 360,
+      rotationSpeed: (Math.random() - 0.5) * 3,
+      opacity: 0.5 + Math.random() * 0.5,
+      swayPhase: Math.random() * Math.PI * 2,
+      swaySpeed: 0.02 + Math.random() * 0.02
+    };
+  }
+
+  drawPetal(p) {
+    this.ctx.save();
+    this.ctx.translate(p.x, p.y);
+    this.ctx.rotate((p.rotation * Math.PI) / 180);
+    this.ctx.globalAlpha = p.opacity;
+    this.ctx.font = p.size + 'px serif';
+    this.ctx.fillText('🌸', -p.size / 2, p.size / 2);
+    this.ctx.restore();
+  }
+
+  update() {
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+    // Add new petals
+    if (Math.random() < 0.15) {
+      this.petals.push(this.createPetal());
+    }
+
+    for (let i = this.petals.length - 1; i >= 0; i--) {
+      const p = this.petals[i];
+      p.y += p.speedY;
+      p.x += Math.sin(p.swayPhase) * 1.2 + p.speedX * 0.3;
+      p.swayPhase += p.swaySpeed;
+      p.rotation += p.rotationSpeed;
+
+      // Fade out near bottom
+      if (p.y > this.canvas.height - 100) {
+        p.opacity -= 0.01;
+      }
+
+      this.drawPetal(p);
+
+      // Remove off-screen or invisible petals
+      if (p.y > this.canvas.height + 20 || p.opacity <= 0) {
+        this.petals.splice(i, 1);
+      }
+    }
+  }
+
+  start() {
+    if (this.running) return;
+    this.running = true;
+    this.petals = [];
+    // Initial burst
+    for (let i = 0; i < 20; i++) {
+      const petal = this.createPetal();
+      petal.y = Math.random() * this.canvas.height;
+      this.petals.push(petal);
+    }
+    this.loop();
+  }
+
+  loop() {
+    if (!this.running) return;
+    this.update();
+    requestAnimationFrame(() => this.loop());
+  }
+
+  stop() {
+    this.running = false;
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    this.petals = [];
+  }
+}
+
+// ============ INIT ============
+const lockBlossoms = new CherryBlossomEngine('blossomCanvas');
+const surpriseBlossoms = new CherryBlossomEngine('surpriseBlossomCanvas');
+
+// Start cherry blossoms on lock screen
+
+// ============ UNLOCK ============
+function unlock() {
+  if (document.getElementById("passwordInput").value === "OWLTORTO") {
+    document.getElementById("lockScreen").style.display = "none";
+    lockBlossoms.stop();
+    document.getElementById("blossomCanvas").style.display = "none";
+
+    const birthdayAnim = document.getElementById("birthdayAnim");
+    birthdayAnim.style.display = "flex";
+
+    const emojis = ["🎈", "💗", "🌸"];
+    for (let i = 0; i < 19; i++) {
+      const b = document.createElement("div");
+      b.className = "balloon";
+      b.innerHTML = emojis[Math.floor(Math.random() * 3)];
+      b.style.left = Math.random() * 100 + "vw";
+      b.style.animationDelay = (Math.random() * 2) + "s";
+      birthdayAnim.appendChild(b);
+    }
+
+    setTimeout(() => {
+      birthdayAnim.style.display = "none";
+      document.getElementById("mainContent").style.display = "block";
+    }, 4500);
+  } else {
+    alert("Wrong password 💔");
+  }}
+
+  // ============ SURPRISE ============
+  function showSurprise() {
+    const overlay = document.getElementById("videoOverlay");
+    const video = document.getElementById("surpriseVideo");
+    const text = document.getElementById("finalText");
+
+    overlay.style.display = "flex";
+    text.className = "final-text";
+    video.style.display = "block";
+    video.currentTime = 0;
+    video.play();
+
+    // Start cherry blossoms in surprise overlay 
+    // surpriseBlossoms.start();
+    video.onended = () => {
+       video.style.display = "none";
+        text.className = "final-text show";
+       };
+       }
+
+       function closeSurprise() {
+         const overlay = document.getElementById("videoOverlay");
+          const video = document.getElementById("surpriseVideo"); 
+          const text = document.getElementById("finalText");
+
+          video.pause(); 
+          video.currentTime = 0; 
+          video.style.display = "block"; 
+          overlay.style.display = "none";
+           text.className = "final-text";
+
+           // Stop cherry blossoms 
+           // surpriseBlossoms.stop();
+            }
+            </script>
+
+            </body> 
+            </html>
